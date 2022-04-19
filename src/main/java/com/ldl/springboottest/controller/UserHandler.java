@@ -36,11 +36,15 @@ public class UserHandler {
     private Order_DetailRepository order_detailRepository;
     @PostMapping("/login")
     public String login(@RequestBody User user){
+        System.out.println(user);
         List<User> users = userRepository.findByunumber(user.getUnumber());
-        String string = DigestUtils.md5DigestAsHex(user.getUpassword().getBytes());
+//        String string = DigestUtils.md5DigestAsHex(user.getUpassword().getBytes());
         boolean flag=false;
         for(int i=0;i<users.size();i++){
-            if (string.equals(users.get(i).getUpassword())){
+//            if (string.equals(DigestUtils.md5DigestAsHex(users.get(i).getUpassword().getBytes()))){
+//                flag=true;
+//            }
+            if (user.getUpassword().equals(users.get(i).getUpassword())){
                 flag=true;
             }
         }

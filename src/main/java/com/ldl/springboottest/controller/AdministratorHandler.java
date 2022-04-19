@@ -28,13 +28,13 @@ public class AdministratorHandler {
         //如果数据库中没有改管理员时,aid为0
         Administrator administratortotal = new Administrator();
         Administrator administratorset = new Administrator();
-        String string = DigestUtils.md5DigestAsHex(administrator.getApassword().getBytes());
+//        String string = DigestUtils.md5DigestAsHex(administrator.getApassword().getBytes());
         administratortotal.setAid(0);
         List<Administrator> administrators = administratorRepository.findByanumber(administrator.getAnumber());
 
         for(int i=0;i<administrators.size();i++){
             Administrator administrator1 = administrators.get(i);
-            if (string.equals(administrator1.getApassword())){
+            if (administrator.getApassword().equals(administrator1.getApassword())){
                 administratortotal = administrator1;
                 //在登录时将对应的administrator的状态位置1
                 administratorset = administrator1;
